@@ -17,4 +17,7 @@ Route::get('/', function () {
 
 Route::auth();
 
+Route::get('{channel}/redirect', 'Auth\SocialController@redirect');
+Route::get('{channel}/callback', 'Auth\SocialController@callback');
+
 Route::get('/home', 'HomeController@index');

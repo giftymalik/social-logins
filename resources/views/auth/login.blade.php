@@ -4,6 +4,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @if (session('channel-error'))
+                <div class="text-center alert alert-danger">{{ session('channel-error') }}</div>
+            @endif
             <div class="panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
@@ -55,6 +58,15 @@
                                 </button>
 
                                 <a class="btn btn-link" href="{{ url('/password/reset') }}">Forgot Your Password?</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <div class="col-md-3 col-md-offset-2">
+                                <a class="btn btn-primary" href="facebook/redirect"><i class="fa fa-facebook"></i> - Login</a>
+                            </div>
+                            <div class="col-md-3 col-md-offset-2">
+                                <a class="btn btn-primary" href="google/redirect"><i class="fa fa-google"></i> - Login</a>
                             </div>
                         </div>
                     </form>
