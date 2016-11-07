@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Services\SocialAccount;
 
 class SocialController extends Controller
 {
@@ -18,8 +19,12 @@ class SocialController extends Controller
         return \Socialite::driver($channel)->redirect();
     }
 
-    public function callback($channel)
+    public function callback($channel, SocialAccount $service)
     {
-        return \Socialite::driver($channel)->user()->getEmail();
+        $user = $service->fetchUser($channel, \Socialite::driver($channel)->user());
+
+        auth()->login($user);
+
+        return redirect()->to('/home');
     }
 }
